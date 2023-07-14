@@ -1,0 +1,27 @@
+.titulo {
+    color: hotpink;
+    width: 350px;
+    height: 50px;
+    background-color:teal;
+}
+
+ label {
+    background-color: blueviolet;
+    width: 350;
+    height: 50;
+
+ }
+ 
+ input {
+    background-color: blueviolet;
+    width: 350;
+    height: 50;
+
+ }
+
+ button {
+    background-color: blueviolet;
+    width: 350;
+    height: 50;
+
+ }

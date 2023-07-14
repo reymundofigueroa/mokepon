@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mokemon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./codigo_js/codigo.js"></script>
+    <link rel="stylesheet" href="./codigo_css/mokemon.css">
+</head>
+<body>
+    <h1 class="titulo">¡MOKEMON! 🔥 🌊 🌱</h1>
+
+    <section id="seleccionarMascota">
+        <h2>Elige tu mascota:</h2>
+        
+        <label for="hipodogue">Hipodogue</label>
+        <input type="radio" name="mascota" id="hipodogue">
+        
+        <label for="capipego">Capipego</label>
+        <input type="radio" name="mascota" id="capipego">
+        
+        <label for="ratigueya">ratigueya</label>
+        <input type="radio" name="mascota" id="ratigueya">
+
+        <button id="botonMascota">Seleccionar</button>
+    </section>
+    
+    <section id="seleccionarAtaque" style="display: none;">
+        <h2>Elige tu ataque:</h2>
+
+        <p>Tu mascota <span id="mascotaJugador"></span> tiene <span id="vidasJugador">3</span> vidas</p>
+        <p>La mascota <span id="mascotaEnemigo"></span> del enemigo tiene <span id="vidasEnemigo">3</span> vidas</p>
+
+        <p>
+            <button id="botonFuego">fUEGO 🔥</button>
+            <button id="botonAgua">Agua 🌊</button>
+            <button id="botonTierra">Tierra 🌱</button>
+        </p>
+    </section>
+
+    <section id="mensajes">
+       
+    </section>
+
+    <section id="reiniciar" style="display: none;">
+        <button id="botonReiniciar">Reiniciar</button>
+    </section>
+
+    
+
+</body></html>
