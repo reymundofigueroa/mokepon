@@ -59,8 +59,11 @@ let inputHipodogue = document.getElementById("hipodogue")
 
 function seleccionarMascotaEnemigo(){
     let sectionSeleccionarMascota = document.getElementById("seleccionarMascota")
+    let sectionSubEligeMascota = document.getElementById("subEligeMascota")
+    sectionSubEligeMascota.style.display = "none"
     sectionSeleccionarMascota.style.display = "none"
     
+
     let mascotaAleatorio = aleatorio(1,3)
     let spanMascotaEnemigo = document.getElementById("mascotaEnemigo") 
     
