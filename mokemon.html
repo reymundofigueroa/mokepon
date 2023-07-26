@@ -2,33 +2,45 @@
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mokemon</title>
+    <title>Mokepon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="./codigo_js/codigo.js"></script>
     <link rel="stylesheet" href="./codigo_css/mokemon.css">
 </head>
 <body>
+    
     <div id="titulo">
-    <h1 >🔥¡MOKEMON!🌊</h1>
+    <h1 >🔥¡Mokepon!🌊</h1>
     </div>
     
-    <section id="subEligeMascota"><h2>Elige tu mascota:<br></h2></section>
-    
+
+    <div id="subEligeMascota"><h2>Elige tu mascota:</h2></div>
     <section id="seleccionarMascota">
         
-        
-        <label class="tarjetaMokepon" for="hipodogue">Hipodogue</label>
+
+    <div class="tarjetas"> 
+        <label class="tarjetaMokepon" for="hipodogue">
+            <p>Hipodogue</p>
+            <img src="./imagenes/hipodogue.jpeg" alt="hipodogue">
+        </label>
         <input type="radio" name="mascota" id="hipodogue">
         
-        <label class="tarjetaMokepon" for="capipego">Capipego</label>
+        <label class="tarjetaMokepon" for="capipego">
+            <p>Capipego</p>
+            <img src="./imagenes/capipeco.jpg" alt="capipeco">
+        </label>
         <input type="radio" name="mascota" id="capipego">
         
-        <label class="tarjetaMokepon" for="ratigueya">ratigueya</label>
+        <label class="tarjetaMokepon" for="ratigueya">
+            <p>Ratigueya</p>
+            <img src="./imagenes/ratiguella.jpeg" alt="ratiguella">
+        </label>
         <input type="radio" name="mascota" id="ratigueya">
-
-        <button id="botonMascota">Seleccionar</button>
+    </div> 
     </section>
     
+    <section id = "botonContinuar"><button id="botonMascota">Continuar</button></section> 
+
     <section id="seleccionarAtaque" style="display: none;">
         <h2>Elige tu ataque:</h2>
 

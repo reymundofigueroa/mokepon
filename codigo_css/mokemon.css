@@ -1,7 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url(./imagenes/fondo1.jpg);
+body{
+   font-family: 'Audiowide', cursive;
+   margin: 0px;
+   padding: 0px;
+   background-size: cover;
+   background-position: center;
+   background-color: #AED8CC;
+}
+
 #titulo {
    display: flex; 
-   color: hotpink;
-    background-color:teal;
+   color: white;
+    background-color: #461959;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -9,10 +20,8 @@
 
 #subEligeMascota{
    display:flex;
-   flex-direction:row; 
    justify-content: center;
    align-items: center;
-   flex-wrap: wrap;
 }
 
 
@@ -22,20 +31,36 @@
    flex-direction:row; 
    justify-content: center;
    align-items: center;
+   flex-wrap: wrap;
+}
+
+.tarjetas{
+   display: flex;
 }
 
 .tarjetaMokepon
 {
+   color: white;
    width: 120px;
    height: 190px;
-   background-color: aquamarine;
+   background-color: #7A316F;
    padding: 10px;
    box-sizing: border-box;
    justify-items: center;
    margin: 10px;
-   border: 2px solid hotpink; 
+   border: 2px solid #7A316F; 
    border-radius: 10px;
 
+}
+
+.tarjetaMokepon img{
+   width: 95px;
+}
+
+#botonContinuar{
+   display:flex;
+   justify-content: center;
+   align-items: center;
 }
 
 input{
