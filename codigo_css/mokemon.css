@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-@import url(./imagenes/fondo1.jpg);
+
 body{
    font-family: 'Audiowide', cursive;
    margin: 0px;
    padding: 0px;
    background-size: cover;
    background-position: center;
-   background-color: #AED8CC;
+   background-image: url("/imagenes/fondo1.jpg");
+   background-repeat: no-repeat;
 }
 
 #titulo {
@@ -61,6 +62,19 @@ body{
    display:flex;
    justify-content: center;
    align-items: center;
+   
+}
+
+#botonMascota{
+background-color: #461959;  
+border-radius: 10px; 
+width: 180px;
+height: 40px;
+color:white;
+border: 2px solid white;
+font-family: 'Audiowide', cursive;
+margin-top: 30px;
+
 }
 
 input{
