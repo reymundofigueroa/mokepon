@@ -6,8 +6,7 @@ body{
    padding: 0px;
    background-size: cover;
    background-position: center;
-   background-image: url("/imagenes/fondo1.jpg");
-   background-repeat: no-repeat;
+   background-color: aquamarine;
 }
 
 #titulo {
