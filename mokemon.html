@@ -4,11 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mokepon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./codigo_js/codigo.js"></script>
     <link rel="stylesheet" href="./codigo_css/mokemon.css">
 </head>
     <body>
-    
         <div id="titulo">
             <h1 >🔥¡Mokepon!🌊</h1>
         </div>
@@ -16,40 +14,19 @@
         <div id="subEligeMascota"><h2>¡Elige tu mascota!</h2></div>
 
         <section id="seleccionarMascota">
-            <div class="tarjetas"> 
-                <input type="radio" name="mascota" id="hipodogue">
-                <label class="tarjetaMokepon" for="hipodogue">
-                    <p>Hipodogue</p>
-                    <img src="./imagenes/hipodogue.jpeg" alt="hipodogue">
-                </label>
-                
-                <input type="radio" name="mascota" id="capipego">
-                <label class="tarjetaMokepon" for="capipego">
-                    <p>Capipego</p>
-                    <img src="./imagenes/capipeco.jpg" alt="capipeco">
-                </label>
-                
-                <input type="radio" name="mascota" id="ratigueya">
-                <label class="tarjetaMokepon" for="ratigueya">
-                    <p>Ratigueya</p>
-                    <img src="./imagenes/ratiguella.jpeg" alt="ratiguella">
-                </label>  
+            <div id="contenedorTarjetas" class="tarjetas"> 
+               
             </div> 
         </section>
-
         <section id = "botonContinuar"><button id="botonMascota">Continuar</button></section> 
 
+       
         <section id="seleccionarAtaque" style="display: none;">
             <h2>¡Elige tu ataque!</h2>
         
-            <div class="tarjetasAtaques">
-                <button id="botonFuego" class="botonAtaque">fUEGO 🔥</button>
-                <button id="botonAgua" class="botonAtaque">Agua 🌊</button>
-                <button id="botonTierra" class="botonAtaque">Tierra 🌱</button>
-            </div>
+            <div id="contenedorBotones" class="tarjetasAtaques"></div>
 
             <div id="mensajes"> 
-                
                 <p id="resultado">¡Que la fuerza te acompañe¡</p>
                 
                 <section id="reiniciar" style="display: none;">
@@ -70,5 +47,6 @@
                 </div>
             </div>
         </section>
+        <script src="./codigo_js/codigo.js"></script>
     </body>
 </html>
