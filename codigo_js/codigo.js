@@ -27,6 +27,10 @@ const sectionBotonReiniciar = document.getElementById("reiniciar")
 const contenedorTarjetas = document.getElementById("contenedorTarjetas")
 const contenedorBotones = document.getElementById("contenedorBotones")
 
+//constantes del canva
+const sectionVerMapa = document.getElementById("verMapa")
+const mapa = document.getElementById("mapa")
+
 let mokepones = []
 let ataqueJugador = []
 let ataqueEnemigo = []
@@ -47,6 +51,8 @@ let ataqueAleatorio = aleatorio(1,3)
 let decicionCombate
 let intentosJugador = 0
 let intentosEnemigo = 0
+let lienzo = mapa.getContext("2d")
+let intervalo
 
 class Mokepon {
     constructor(nombre, foto, vida){
@@ -54,6 +60,14 @@ class Mokepon {
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -90,6 +104,7 @@ mokepones.push(hipodogue, capipego, ratigueya)
 
 function iniciarJuego(){
     sectionBotonReiniciar.style.display = "none"
+    sectionVerMapa.style.display = "none"
 
     mokepones.forEach((Mokepon) => {
         opcionDeMokepones = `<input type="radio" name="mascota" id=${Mokepon.nombre}>
@@ -116,8 +131,11 @@ function aleatorio (min, max){
 }
 
 function seleccionarMascotaJugador(){ 
-    sectionSeleccionarAtaque.style.display = "flex"
-   
+    //sectionSeleccionarAtaque.style.display = "flex"
+    sectionVerMapa.style.display = "flex"
+    intervalo = setInterval(pintarPersonaje, 50)
+    pintarPersonaje()
+
     if(inputHipodogue.checked){
     sapnMAscotaJugador.innerHTML = inputHipodogue.id
     mascotaJugador = inputHipodogue.id
@@ -228,8 +246,6 @@ function combate(){
         if(ataqueJugador[index] == ataqueEnemigo[index]){
             indexAmbosOponentes(index, index)
             crearMensaje("EMPATE")
-            intentosJugador = intentosJugador
-            spanVidasJugador.innerHTML = intentosJugador
         }else if(ataqueJugador[index] == "FUEGO" && ataqueEnemigo[index] == "TIERRA"){
             indexAmbosOponentes(index, index)
             crearMensaje("GANASTE")
@@ -253,6 +269,7 @@ function combate(){
         
     }    
 }revisarVidas()}
+
 function revisarVidas(){
     if(intentosEnemigo == intentosJugador){
         crearMensajeFinal("-EMAPATE-")
@@ -282,6 +299,39 @@ function crearMensajeFinal(resultadoFinal){
 
 function reiniciarJuego(){
     location.reload() 
+}
+
+function pintarPersonaje(){
+    capipego.x = capipego.x + capipego.velocidadX
+    capipego.y = capipego.y + capipego.velocidadY
+    lienzo.clearRect(0,0, mapa.width, mapa. height)
+    lienzo.drawImage(
+        capipego.mapaFoto,
+        capipego.x,
+        capipego.y,
+        capipego.ancho,
+        capipego.alto  )
+}
+
+function moverDerecha(){
+    capipego.velocidadX =5
+}
+
+function moverIzquierda(){
+    capipego.velocidadX  = -5
+}
+
+function moverArriba(){
+    capipego.velocidadY = -5
+}
+
+function moverAbajo(){
+    capipego.velocidadY = +5
+}
+
+function detenerMovimiento(){
+    capipego.velocidadX = 0
+    capipego.velocidadY = 0
 }
 
 window.addEventListener("load", iniciarJuego)

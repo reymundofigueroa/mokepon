@@ -146,6 +146,16 @@ background-color: #5D8BF4;
    border: 2px solid white;
 }
 
+#verMapa{
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#mapa{
+   border: 3px solid white
+}
+
 @media (max-width: 400px)
 {
    .tarjetasAtaques, .tarjetas
