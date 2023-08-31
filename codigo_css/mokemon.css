@@ -7,7 +7,8 @@ body
    padding: 0px;
    background-size: cover;
    background-position: center;
-   background-color: aquamarine;
+   background-color: #337CCF;
+
 }
 
 #titulo 
@@ -49,7 +50,7 @@ body
    color: white;
    width: 120px;
    height: 190px;
-   background-color: #7A316F;
+   background-color: #191D88;
    padding: 10px;
    box-sizing: border-box;
    justify-items: center;
@@ -61,7 +62,7 @@ body
 
 .tarjetaMokepon img
 {
-   width: 95px;
+   width: 135px;
 }
 
 #botonContinuar

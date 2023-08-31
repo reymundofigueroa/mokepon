@@ -31,6 +31,7 @@ const contenedorBotones = document.getElementById("contenedorBotones")
 const sectionVerMapa = document.getElementById("verMapa")
 const mapa = document.getElementById("mapa")
 
+
 let mokepones = []
 let ataqueJugador = []
 let ataqueEnemigo = []
@@ -42,6 +43,7 @@ let botonFuego
 let botonAgua 
 let botonTierra 
 let mascotaJugador
+let mascotaJugadorObjeto
 let ataquesMokepon
 let ataquesMokeponEnemigo 
 let botones = []
@@ -53,6 +55,10 @@ let intentosJugador = 0
 let intentosEnemigo = 0
 let lienzo = mapa.getContext("2d")
 let intervalo
+let mapaBackgound = new Image()
+mapaBackgound.src = "./imagenes/mapa.jpeg"
+let ImagenDeFondo = new Image()
+ImagenDeFondo.src = "./imagenes/fondo1.jpg"
 
 class Mokepon {
     constructor(nombre, foto, vida){
@@ -106,6 +112,8 @@ function iniciarJuego(){
     sectionBotonReiniciar.style.display = "none"
     sectionVerMapa.style.display = "none"
 
+   
+
     mokepones.forEach((Mokepon) => {
         opcionDeMokepones = `<input type="radio" name="mascota" id=${Mokepon.nombre}>
         <label class="tarjetaMokepon" for=${Mokepon.nombre}>
@@ -132,10 +140,7 @@ function aleatorio (min, max){
 
 function seleccionarMascotaJugador(){ 
     //sectionSeleccionarAtaque.style.display = "flex"
-    sectionVerMapa.style.display = "flex"
-    intervalo = setInterval(pintarPersonaje, 50)
-    pintarPersonaje()
-
+   
     if(inputHipodogue.checked){
     sapnMAscotaJugador.innerHTML = inputHipodogue.id
     mascotaJugador = inputHipodogue.id
@@ -153,7 +158,11 @@ function seleccionarMascotaJugador(){
    }
 
    extraerAtaques(mascotaJugador)
+   sectionVerMapa.style.display = "flex"
+   iniciarMapa()
+
    seleccionarMascotaEnemigo()
+ 
 }
 
 function extraerAtaques(mascotaJugador){
@@ -301,37 +310,81 @@ function reiniciarJuego(){
     location.reload() 
 }
 
-function pintarPersonaje(){
-    capipego.x = capipego.x + capipego.velocidadX
-    capipego.y = capipego.y + capipego.velocidadY
+function pintarCanvas(){
+    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
+    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
     lienzo.clearRect(0,0, mapa.width, mapa. height)
     lienzo.drawImage(
-        capipego.mapaFoto,
-        capipego.x,
-        capipego.y,
-        capipego.ancho,
-        capipego.alto  )
+        mapaBackgound,
+        0,
+        0,
+        mapa.width,
+        mapa.height )
+    lienzo.drawImage(
+        mascotaJugadorObjeto.mapaFoto,
+        mascotaJugadorObjeto.x,
+        mascotaJugadorObjeto.y,
+        mascotaJugadorObjeto.ancho,
+        mascotaJugadorObjeto.alto )
 }
 
 function moverDerecha(){
-    capipego.velocidadX =5
+    mascotaJugadorObjeto.velocidadX =5
 }
 
 function moverIzquierda(){
-    capipego.velocidadX  = -5
+    mascotaJugadorObjeto.velocidadX  = -5
 }
 
 function moverArriba(){
-    capipego.velocidadY = -5
+    mascotaJugadorObjeto.velocidadY = -5
 }
 
 function moverAbajo(){
-    capipego.velocidadY = +5
+    mascotaJugadorObjeto.velocidadY = +5
 }
 
 function detenerMovimiento(){
-    capipego.velocidadX = 0
-    capipego.velocidadY = 0
+    
+    mascotaJugadorObjeto.velocidadX = 0
+    mascotaJugadorObjeto.velocidadY = 0
+}
+
+function sePresionaUnaTecla(event){
+    switch (event.key) {
+        case "ArrowUp":
+            moverArriba()
+            break
+        case "ArrowDown":
+            moverAbajo()
+            break
+        case "ArrowLeft":
+            moverIzquierda()
+            break
+        case "ArrowRight":
+            moverDerecha()
+            break
+        default:
+            break
+    }
+}
+
+function iniciarMapa(){
+    mapa.width = 900
+    mapa.height = 400
+    mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
+    intervalo = setInterval(pintarCanvas, 50)
+    pintarCanvas()
+    window.addEventListener("keydown", sePresionaUnaTecla)
+    window.addEventListener("keyup",detenerMovimiento)
+}
+
+function obtenerObjetoMascota(){
+    for (let i = 0; i < mokepones.length; i++) {
+        if(mascotaJugador == mokepones[i].nombre){
+            return mokepones[i]
+        }
+    }
 }
 
 window.addEventListener("load", iniciarJuego)
