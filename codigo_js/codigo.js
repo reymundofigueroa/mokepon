@@ -61,25 +61,25 @@ let ImagenDeFondo = new Image()
 ImagenDeFondo.src = "./imagenes/fondo1.jpg"
 
 class Mokepon {
-    constructor(nombre, foto, vida){
+    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10 ){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
         this.x = 20
         this.y = 30
-        this.ancho = 80
-        this.alto = 80
+        this.ancho = 60
+        this.alto = 60
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
 }
 
-let hipodogue = new Mokepon("Hipodoge","./imagenes/hipodogue.jpeg", 5)
-let capipego = new Mokepon("Capipego", "./imagenes/capipeco.jpg", 5)
-let ratigueya = new Mokepon("Ratigueya", "./imagenes/ratiguella.jpeg", 5)
+let hipodogue = new Mokepon("Hipodoge","./imagenes/hipodogue.jpeg", 5, "./imagenes/hipodogeCara.png")
+let capipego = new Mokepon("Capipego", "./imagenes/capipeco.jpg", 5, "./imagenes/capipegoCara.png")
+let ratigueya = new Mokepon("Ratigueya", "./imagenes/ratiguella.jpeg", 5, "./imagenes/ratigueyaCara.png")
 
 hipodogue.ataques.push(
     {nombre: "🌊", id: "botonAgua"},
