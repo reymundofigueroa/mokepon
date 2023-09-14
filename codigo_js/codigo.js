@@ -185,9 +185,7 @@ function aleatorio (min, max){
 }
 
 function seleccionarMascotaJugador(){ 
-    sectionSeleccionarMascota.style.display = "none"
-    sectionSubEligeMascota.style.display = "none"
-    sectionBotonContinuar.style.display = "none"
+    
    
     if(inputHipodogue.checked){
     sapnMAscotaJugador.innerHTML = inputHipodogue.id
@@ -203,9 +201,14 @@ function seleccionarMascotaJugador(){
   }
    else{
     alert("Tienes que escojer una mascota")
+    return
   }
 
-  seleccionarMokepon(mascotaJugador)
+    sectionSeleccionarMascota.style.display = "none"
+    sectionSubEligeMascota.style.display = "none"
+    sectionBotonContinuar.style.display = "none"
+
+    seleccionarMokepon(mascotaJugador)
 
    extraerAtaques(mascotaJugador)
    sectionVerMapa.style.display = "flex"
@@ -272,12 +275,40 @@ function secuenciaAtaque(){
                 boton.style.background = "#112f58"
                 boton.disabled = true
             }
-        ataqueEnemigoAleatorio()
+            if (ataqueJugador.length === 5){
+                enviarAtaques()
+            }
         })
     })
 }
 
+function enviarAtaques(){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`,{
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataqueJugador
+        })
+    })
+    intervalo = setInterval(obtenerAtaques, 50)
+}
 
+function obtenerAtaques(){
+    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+    .then(function(res){
+        if (res.ok){
+            res.json()
+            .then(function({ ataques }){
+                if (ataques.length === 5 ){
+                    ataqueEnemigo = ataques
+                    combate()
+                }
+            })
+        }
+    })
+}
 
 function ataqueEnemigoAleatorio(){
    let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length -1 )
@@ -305,6 +336,8 @@ function indexAmbosOponentes(jugador, enemigo ){
 }
 
 function combate(){
+
+    clearInterval(intervalo)
 
     for (let index = 0; index < ataqueJugador.length; index++) {
         if(ataqueJugador[index] == ataqueEnemigo[index]){
@@ -381,14 +414,8 @@ function pintarCanvas(){
     mokeponEnemigos.forEach(function (mokepon){
         if (mokepon != undefined){
         mokepon.pintarMokepon()
+        revisarColision(mokepon)
     }})
-
-   // if (mascotaJugadorObjeto.velocidadX != 0 || mascotaJugadorObjeto.velocidadY != 0){
-       // revisarColision(hipodogueEnemigo)
-      //  revisarColision(capipegoEnemigo)
-        //revisarColision(ratugueyaEnemigo)
-   // }
-   
 }
 
 function enviarPosicion(x, y){
@@ -413,11 +440,11 @@ function enviarPosicion(x, y){
                         if (enemigo.mokepon != undefined){
                        const mokeponNombre = enemigo.mokepon.nombre || ""
                        if (mokeponNombre === "Hipodoge"){
-                        mokeponEnemigo = new Mokepon("Hipodoge","./imagenes/hipodogue.jpeg", 5, "./imagenes/hipodogeCara.png")
+                        mokeponEnemigo = new Mokepon("Hipodoge","./imagenes/hipodogue.jpeg", 5, "./imagenes/hipodogeCara.png", enemigo.id)
                        }else if (mokeponNombre === "Capipego"){
-                        mokeponEnemigo = new Mokepon("Capipego", "./imagenes/capipeco.jpg", 5, "./imagenes/capipegoCara.png")
+                        mokeponEnemigo = new Mokepon("Capipego", "./imagenes/capipeco.jpg", 5, "./imagenes/capipegoCara.png", enemigo.id)
                        }else {
-                        mokeponEnemigo = new Mokepon("Ratigueya", "./imagenes/ratiguella.jpeg", 5, "./imagenes/ratigueyaCara.png")
+                        mokeponEnemigo = new Mokepon("Ratigueya", "./imagenes/ratiguella.jpeg", 5, "./imagenes/ratigueyaCara.png", enemigo.id)
                        }
 
 
@@ -512,6 +539,9 @@ function revisarColision(enemigo){
     }
     detenerMovimiento()
     clearInterval(intervalo)
+
+
+    enemigoId = enemigo.id
     sectionSeleccionarAtaque.style.display = "flex"
     sectionVerMapa.style.display = "none"
     seleccionarMascotaEnemigo(enemigo)
